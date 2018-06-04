@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="web移动端," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ViewPort c参数最佳组合123456789101112&amp;lt;meta name=&quot;ViewPort&quot; content=&quot;width=device-width,initial-scale=1,maximum-scale=1&quot;&amp;gt; /* PC宽屏样式 *//* iPad 及以下，所有小于（不等于）960宽度的平板电脑 */@media only screen and (max-width">
+<meta name="keywords" content="web移动端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端开发最佳实践优化等问题">
+<meta property="og:url" content="http://yoursite.com/2017/10/10/移动端开发最佳实践/index.html">
+<meta property="og:site_name" content="artist code">
+<meta property="og:description" content="ViewPort c参数最佳组合123456789101112&amp;lt;meta name=&quot;ViewPort&quot; content=&quot;width=device-width,initial-scale=1,maximum-scale=1&quot;&amp;gt; /* PC宽屏样式 *//* iPad 及以下，所有小于（不等于）960宽度的平板电脑 */@media only screen and (max-width">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-29T01:02:06.449Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端开发最佳实践优化等问题">
+<meta name="twitter:description" content="ViewPort c参数最佳组合123456789101112&amp;lt;meta name=&quot;ViewPort&quot; content=&quot;width=device-width,initial-scale=1,maximum-scale=1&quot;&amp;gt; /* PC宽屏样式 *//* iPad 及以下，所有小于（不等于）960宽度的平板电脑 */@media only screen and (max-width">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/10/移动端开发最佳实践/"/>
+
+
+
+
+
+  <title>移动端开发最佳实践优化等问题 | artist code</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">artist code</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/移动端开发最佳实践/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hock">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="artist code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动端开发最佳实践优化等问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T17:05:41+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="ViewPort-c参数最佳组合"><a href="#ViewPort-c参数最佳组合" class="headerlink" title="ViewPort c参数最佳组合"></a>ViewPort c参数最佳组合</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"ViewPort"</span> content=<span class="string">"width=device-width,initial-scale=1,maximum-scale=1"</span>&gt; </span><br><span class="line">/* PC宽屏样式 */</span><br><span class="line">/* iPad 及以下，所有小于（不等于）960宽度的平板电脑 */</span><br><span class="line">@media only screen and (max-width: 959px) &#123;&#125;</span><br><span class="line">/* 仅iPad 竖版，所有小于（不等于）960宽度的平板电脑的竖版 */</span><br><span class="line">@media only screen and (min-width: 768px) and (max-width: 959px) &#123;&#125;</span><br><span class="line">/* iPhone 及以下 */ </span><br><span class="line">@media only screen and (max-width: 767px) &#123;&#125;</span><br><span class="line">/* 仅iPhone 横版，包括某些平板电脑的竖版 */ </span><br><span class="line">@media only screen and (min-width: 480px) and (max-width: 767px) &#123;&#125;</span><br><span class="line">/* 仅iphone4 竖版 */</span><br><span class="line">@media only screen and (max-width: 479px) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="MediaQuery书写思路"><a href="#MediaQuery书写思路" class="headerlink" title="MediaQuery书写思路"></a>MediaQuery书写思路</h4><p>• 先写高分辨率样式<br>• 先写低分辨率样式<br>哪种写法更适合？<br>先写高分辨率样式<br>原因？<br>1.设计师设计原型往往首先基于宽屏<br>  甚至不会给出适配设计稿<br>2.宽屏视觉元素更多，减法比加法容易<br>reset.css 字体样式定义<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">body &#123;font-family:tahoma,arial,\5b8b\4f53,sans-serif;&#125;</span><br><span class="line">html &#123;-webkit-text-size-adjust: 100%;&#125;</span><br><span class="line">iOS：华文细黑 + Helvetica</span><br><span class="line">Android：文泉驿微米黑 + Droid Sans</span><br></pre></td></tr></table></figure></p>
+<h4 id="响应式图片"><a href="#响应式图片" class="headerlink" title="响应式图片"></a>响应式图片</h4><p>有两种基本的图片类型需要考虑<br>1，需要缩放的图片  例如：普通图片 pc端，移动端<br>2，不能缩放的图片  例如：百度地图<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">.selector-to-img&#123;</span><br><span class="line">width:100px;height:100px;</span><br><span class="line">background:url(<span class="string">'img-pc.png‘) no-repeat center;  </span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">@media only screen and /*tablet*/ &#123;</span></span><br><span class="line"><span class="string">background:url('</span>img-tablet.png<span class="string">') no-repeat center;  //不同尺寸的屏幕显示的图片不一样</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">@media only screen and /*mobile*/ &#123;</span></span><br><span class="line"><span class="string">background:url('</span>img-mobile.png<span class="string">') no-repeat center;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&lt;/style&gt;</span></span><br><span class="line"><span class="string">&lt;img src="space.gif" class="selector-to-img" /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这样做需要2个条件<br>1.服务器上提供多尺寸图片<br>淘宝传图工具可以自动生成多尺寸图片<br>2，要有心理准备污染html代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Pic_sum.jpg     |</span><br><span class="line">Pic_m.jpg       |</span><br><span class="line">Pic_b.jpg       | -----  服务器 自动生成 25种尺寸</span><br><span class="line">Pic_80x40.jpg   |</span><br><span class="line">Pic_120x120.jpg |</span><br><span class="line">Pic_160x160.jpg |</span><br><span class="line">------- </span><br><span class="line">```        |</span><br><span class="line"><span class="comment">#### 图片的剪裁</span></span><br><span class="line">``` bash</span><br><span class="line">http://jayli.github.com/gallery/rd/responsive.html</span><br><span class="line">同一张图，不同的定位</span><br><span class="line">http://jayli.github.com/gallery/rd/responsive.html</span><br><span class="line">.pic &#123;</span><br><span class="line">background-image:url(<span class="string">"url.png"</span>);</span><br><span class="line">width:30px;height:30px;</span><br><span class="line">&#125;</span><br><span class="line">@media only screen and /*tablet or mobile*/ &#123;</span><br><span class="line">.pic &#123;</span><br><span class="line">width:20px;height:20px;</span><br><span class="line">background-position:x y;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;img src=<span class="string">"space.gif"</span> class=<span class="string">"pic"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>设备适配只能在前端完成？<br>RESS</p>
+<h4 id="服务器端实现的“响应式”"><a href="#服务器端实现的“响应式”" class="headerlink" title="服务器端实现的“响应式”"></a>服务器端实现的“响应式”</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Responsive Design + Server Side Components</span><br><span class="line">http://www.slideshare.net/4nd3rsen/ress-responsive-design-server-sidecomponents-10084972</span><br><span class="line"></span><br><span class="line">ServerSide</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$Device1</span>)&#123;</span><br><span class="line">//设备1样式</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$style1</span>; </span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="variable">$Device2</span>)&#123;</span><br><span class="line">//设备2样式</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$style2</span>; </span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="variable">$Device3</span>)&#123;</span><br><span class="line">//设备3样式</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$style3</span>; </span><br><span class="line">&#125;</span><br><span class="line">---------------------------------------</span><br><span class="line">ClientSide</span><br><span class="line">@media only screen and /*设备1条件*/ &#123;</span><br><span class="line">/* 设备1样式*/</span><br><span class="line">&#125;</span><br><span class="line">@media only screen and /*设备2条件*/ &#123;</span><br><span class="line">/* 设备2样式*/</span><br><span class="line">&#125;</span><br><span class="line">@media only screen and /*设备3条件*/ &#123;</span><br><span class="line">/* 设备3样式*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果抛开“兼容性”？<br>针对单一设备做更极致的用户体验<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html manifest=<span class="string">"http://www.../pad-sport-cache.php"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;!—ViewPortMeta设置，禁止手动缩放--&gt;</span><br><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width,initial-scale=1,maximum-scale=1"</span>&gt;</span><br><span class="line">&lt;!--屏蔽拨号链接--&gt;</span><br><span class="line">&lt;meta name=<span class="string">"format-detection"</span> content=<span class="string">"telephone=no"</span> /&gt;</span><br><span class="line">&lt;!--隐藏浏览器导航栏--&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span> /&gt;</span><br><span class="line">&lt;link rel=<span class="string">"apple-touch-icon"</span> </span><br><span class="line">sizes=<span class="string">"72x72"</span> </span><br><span class="line">href=<span class="string">"http://cdn/img-72-72.png"</span> /&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">…</span><br></pre></td></tr></table></figure></p>
+<p>多了几个新属性<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-capable"</span> content=<span class="string">"yes"</span>&gt;</span><br><span class="line">&lt;meta name=<span class="string">"apple-mobile-web-app-status-bar-style"</span> content=<span class="string">"black"</span> /&gt;</span><br><span class="line">&lt;!--不自动将地址和email转为链接--&gt;</span><br><span class="line">&lt;meta name=<span class="string">"format-detection"</span> content=<span class="string">"address=no;email=no"</span> /&gt;</span><br><span class="line">&lt;!--添加到主屏时的图标--&gt;</span><br><span class="line">&lt;link rel=<span class="string">"apple-touch-icon-precomposed"</span> href=<span class="string">"http://cdn/img-114-114.png"</span>&gt;</span><br><span class="line">&lt;link rel=<span class="string">"apple-touch-startup-image"</span> href=<span class="string">"http://cdn/img-320-460.png"</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>将网页添加到主屏<br>可以将网页App添加到桌面，通过桌面图标打开App 在分享<br><a href="http://caipiao.m.taobao.com" target="_blank" rel="noopener">http://caipiao.m.taobao.com</a></p>
+<p>添加到主屏的icon<br>apple-touch-icon-precomposed 添加到桌面时有圆角/高光修饰<br>apple-touch-icon 只处理圆角,没有高光修饰<br>终端事件的渐进增强淘宝使用最多的Slide/Switchabl让他们支持touch事件<br>触屏事件不要用ʼclickʼ代替<br>YUI Slide<br><a href="http://jayli.github.com/gallery/yuislide/" target="_blank" rel="noopener">http://jayli.github.com/gallery/yuislide/</a> </p>
+<p>触屏touch事件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">'ontouchstart'</span> <span class="keyword">in</span> document.documentElement) &#123;</span><br><span class="line">node.delegate(<span class="string">'touchstart‘, function(e)&#123;</span></span><br><span class="line"><span class="string">var x = e.changedTouches[0].clientX;</span></span><br><span class="line"><span class="string">//…</span></span><br><span class="line"><span class="string">&#125;);</span></span><br><span class="line"><span class="string">node.delegate('</span>touchend‘, <span class="keyword">function</span>(e)&#123;</span><br><span class="line">var x = e.changedTouches[0].clientX;</span><br><span class="line">//…</span><br><span class="line">&#125;);</span><br><span class="line">node.delegate(<span class="string">"touchmove"</span>,<span class="keyword">function</span>(e)&#123;</span><br><span class="line">var current_x = e.touches[0].pageX;</span><br><span class="line">&#125;);</span><br><span class="line">//…</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="空间位移事件"><a href="#空间位移事件" class="headerlink" title="空间位移事件"></a>空间位移事件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(window.DeviceMotionEvent) &#123;</span><br><span class="line">window.addEventListener(<span class="string">'devicemotion'</span>,<span class="keyword">function</span>(e)&#123; </span><br><span class="line">var acceleration = e.accelerationIncludingGravity;</span><br><span class="line">var x = acceleration.x,</span><br><span class="line">y = acceleration.y, </span><br><span class="line">z = acceleration.z;</span><br><span class="line">//…</span><br><span class="line">&#125;,<span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="HTML5-和-Native-App-如何对接"><a href="#HTML5-和-Native-App-如何对接" class="headerlink" title="HTML5 和 Native App 如何对接?"></a>HTML5 和 Native App 如何对接?</h4><p>1，Web App 服务可以适时更新<br>  Native App软件更新需要重新安装 ？<br>2，Web App 开发周期相对较短<br>   Native App和Web App之间的分工？</p>
+<p>PhoneGap 提供了一些思路<br>将HTML5 App打成安装包，但包升级时无法自动更新<br><a href="http://phonegap.com/" target="_blank" rel="noopener">http://phonegap.com/</a></p>
+<p>HTML5 App + NativeApp<br>HTML5快速开发原型+打包到NativeApp框架中</p>
+<blockquote>
+<p>So，问题是<br>1，低端设备众多<br>2，系统分配给浏览器的资源有限 <a href="http://is.gd/hApzIp" target="_blank" rel="noopener">http://is.gd/hApzIp</a><br>3，简化的浏览器实现<br>4，不少老旧引擎<br>5，需要高性能支持的HTML5 OPOA<br>然而，事实却更加严峻…<br>和PC平台相比<br>1，性能问题会被放大数倍<br>2，很容易造成体验瓶颈</p>
+</blockquote>
+<h4 id="Web-App-的性能优化"><a href="#Web-App-的性能优化" class="headerlink" title="Web App 的性能优化"></a>Web App 的性能优化</h4><blockquote>
+<p>1.处理性能（CPU &amp; RAM）<br>• Reflow &amp; Repaint<br>• CSS3的性能问题<br>• 动画<br>• JS中的内存控制<br>• 高效的JS技巧<br>• 关于电量<br>• HTML5带来的优化<br>2.网络性能 Network<br>需要优化的两个核心</p>
+<ol>
+<li>减少内存中存储的内容</li>
+<li>减少CPU的实时运算消耗<br><a href="http://www.stubbornella.org/content/2009/03/27/reflows-repaints-cssperformance-making-your-javascript-slow" target="_blank" rel="noopener">http://www.stubbornella.org/content/2009/03/27/reflows-repaints-cssperformance-making-your-javascript-slow</a><br><a href="http://www-archive.mozilla.org/newlayout/doc/reflow.html" target="_blank" rel="noopener">http://www-archive.mozilla.org/newlayout/doc/reflow.html</a></li>
+</ol>
+</blockquote>
+<h4 id="减少Reflow-amp-Repaint"><a href="#减少Reflow-amp-Repaint" class="headerlink" title="减少Reflow &amp; Repaint"></a>减少Reflow &amp; Repaint</h4><ol>
+<li>off-document 避免直接操作DOM</li>
+<li>一次性修改样式</li>
+<li>让Dom脱离文档流</li>
+<li>减少Dom数量和深度</li>
+<li>Dom复用<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">1.off-document:文档片段</span><br><span class="line">var fragment = document.createDocumentFragment(),</span><br><span class="line">list = [‘foo’,’bar’,’baz’],elem,contents;</span><br><span class="line"><span class="keyword">for</span> (var i = 0; i&lt;list.length; i++)&#123;</span><br><span class="line">elem = document.createElement(‘div’);</span><br><span class="line">content = document.createTextNode(list[i]);</span><br><span class="line">fragment.appendChild(content);</span><br><span class="line">&#125;</span><br><span class="line">document.body.appendChild(fragment);</span><br><span class="line"></span><br><span class="line">1.off-document:节点克隆</span><br><span class="line">var tmpnode = document.getElementById(‘container’),</span><br><span class="line"><span class="built_in">clone</span> = tmpnode.cloneNode(<span class="literal">true</span>),</span><br><span class="line">list = [‘foo’,’bar’,’baz’],elem,contents;</span><br><span class="line">clone.setAttribute(‘width’,’50%’);</span><br><span class="line"><span class="keyword">for</span>(var i = 0; i&lt;list.length; i++)&#123;</span><br><span class="line">elem = document.createElement(‘div’);</span><br><span class="line">content = document.createTextNode(list[i]);</span><br><span class="line">clone.appendChild(elem);</span><br><span class="line">&#125;</span><br><span class="line">original.parentNode.replaceChild(<span class="built_in">clone</span>,original);</span><br><span class="line"></span><br><span class="line">off-document:block-none-block</span><br><span class="line"></span><br><span class="line">var subElem = document.create(‘div’),</span><br><span class="line">elem = document.getElementById(‘animated’);</span><br><span class="line">elem.style.display = ‘none’;</span><br><span class="line">elem.appendChild(subElem);</span><br><span class="line">elem.style.width = ‘320px’;</span><br><span class="line">elem.style.height = ‘480px’;….</span><br><span class="line">elem.style.display = ‘block’;</span><br><span class="line"></span><br><span class="line">2.一次性修改样式</span><br><span class="line">&lt;style <span class="built_in">type</span>=“text/css”&gt;</span><br><span class="line">div &#123; background:white; color:black; &#125;</span><br><span class="line">div.active &#123; background:blue; color:white; &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(‘<span class="comment">#styled’).addClass(‘active’); </span></span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">3.让元素脱离文档流</span><br><span class="line">.selector1 &#123;</span><br><span class="line">position:absolute;</span><br><span class="line">&#125;</span><br><span class="line">.selector2 &#123;</span><br><span class="line">position:fixed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>4.减少Dom数量和深度<br>瓶颈1：节点reflow，子元素/后续元素都会reflow<br>瓶颈2：DOM尺寸会减慢所有操作</p>
+<p>5.DOM复用<br>建立Dom复用池,避免频繁创建和销毁；使用前端模板</p>
+<p>CSS3 性能问题！<br><a href="http://simonjonsson.com/dev/css3-performance-test" target="_blank" rel="noopener">http://simonjonsson.com/dev/css3-performance-test</a><br><a href="http://www.pubnub.com/blog/css3-performance-optimizatio" target="_blank" rel="noopener">http://www.pubnub.com/blog/css3-performance-optimizatio</a></p>
+<p>性能杀手</p>
+<p>• 大字体<br>• Box shadow<br>• Text indent<br>• Gradients<br>• Background-size<br>• Translate3D &amp; GPU硬件加速<br>过度的使用会增加CPU负载加上reflow和repaint，性能负担加倍<br><a href="http://estelle.github.com/mobileperf/#slide" target="_blank" rel="noopener">http://estelle.github.com/mobileperf/#slide</a></p>
+<p>综合以上，思考一下：</p>
+<ol>
+<li>为什么移动浏览器滚动时动画会停止？！</li>
+<li>为什么我的iScroll这么卡？！</li>
+</ol>
+<p>iScroll的性能瓶颈<br>iScroll滚动与原⽣滚动的性能比较<br>render(reflow+repaint)和script损耗激增<br>空闲时iScroll的CPU损耗不高<br><a href="http://fav.m.taobao.com/h5proxy-fav.htm" target="_blank" rel="noopener">http://fav.m.taobao.com/h5proxy-fav.htm</a></p>
+<p>Scroll发生时,CPU急剧飙升<br><a href="http://fav.m.taobao.com/h5proxy-fav.htm" target="_blank" rel="noopener">http://fav.m.taobao.com/h5proxy-fav.htm</a></p>
+<p>iScroll.js<br><a href="http://cubiq.org/iscroll-4" target="_blank" rel="noopener">http://cubiq.org/iscroll-4</a></p>
+<h4 id="CSS3-动画性能"><a href="#CSS3-动画性能" class="headerlink" title="CSS3 动画性能"></a>CSS3 动画性能</h4><p>动画实现的原理：<br>动画实现的几种形式<br>1, left/top 传统绝对定位计算<br>2, CSS3 Transform 2d<br>3, CSS3 Transform 3d<br>动画的组织形式：<br>1, JavaScript (setInterval) 传统组织<br>2, CSS3 Transition 动态补间<br>3, CSS3 Animation 关键帧组织</p>
+<p>传统的动画实现<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=“Test”&gt;矩形动画,位移300px&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var el = $(‘<span class="comment">#Test’), i = 0;</span></span><br><span class="line">var s = setTimeout(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">i += 1;</span><br><span class="line">el.css(‘top’,i+’px’);</span><br><span class="line"><span class="keyword">if</span>(i &gt;= 300)&#123;</span><br><span class="line">clearTimeout(s);</span><br><span class="line"><span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(arguments.callee,20);</span><br><span class="line">&#125;,20);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id=“Test”&gt;矩形动画,位移300px&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var el = $(‘<span class="comment">#Test’), i = 0;</span></span><br><span class="line">var s = setTimeout(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">i += 1;</span><br><span class="line">el.css(<span class="string">'-webkit-transform'</span>, <span class="string">'translateY('</span>+i+<span class="string">'px)'</span>);</span><br><span class="line"><span class="keyword">if</span>(i &gt;= 300)&#123;</span><br><span class="line">clearTimeout(s);</span><br><span class="line"><span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(arguments.callee,20);</span><br><span class="line">&#125;,20);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id=“Test”&gt;矩形动画,位移300px&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var el = $(‘<span class="comment">#Test’), i = 0;</span></span><br><span class="line">var s = setTimeout(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">i += 1;</span><br><span class="line">el.css(‘-webkit-transform’, </span><br><span class="line"><span class="string">'translate3d(0,'</span>+i+<span class="string">'px,0)'</span>);</span><br><span class="line"><span class="keyword">if</span>(i &gt;= 300)&#123;</span><br><span class="line">clearTimeout(s);</span><br><span class="line"><span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(arguments.callee,20);</span><br><span class="line">&#125;,20);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>CSS3 Anim 关键帧组织<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">.run &#123;</span><br><span class="line">-webkit-transform:translate3d(0,300px,0);</span><br><span class="line">-webkit-animation-duration: .4s;</span><br><span class="line">-webkit-animation-iteration-count: 1;</span><br><span class="line">-webkit-animation-name:anim-top;</span><br><span class="line">&#125;</span><br><span class="line">@-webkit-keyframes anim-top &#123;</span><br><span class="line">from &#123;</span><br><span class="line">top:0;</span><br><span class="line">&#125;</span><br><span class="line">to &#123;</span><br><span class="line">top:300px;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.run &#123;</span><br><span class="line">-webkit-transform:translate3d(0,300px,0);</span><br><span class="line">-webkit-animation-duration: .4s;</span><br><span class="line">-webkit-animation-iteration-count: 1;</span><br><span class="line">-webkit-animation-name:anim-top;</span><br><span class="line">&#125;</span><br><span class="line">@-webkit-keyframes anim-top &#123;</span><br><span class="line">from &#123;</span><br><span class="line">-webkit-transform:translateY(0px);</span><br><span class="line">&#125;</span><br><span class="line">to &#123;</span><br><span class="line">-webkit-transform:translateY(300px);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CSS3 Transition 动态补间</span><br><span class="line"></span><br><span class="line">.<span class="built_in">test</span> &#123;</span><br><span class="line">top:0;</span><br><span class="line">-webkit-transition-property:top;</span><br><span class="line">-webkit-transition-duration:.4s;</span><br><span class="line">-webkit-transition-timing-function: linear;</span><br><span class="line">&#125;</span><br><span class="line">.test.run &#123;</span><br><span class="line">top:300px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">$(‘.<span class="built_in">test</span>’).addClass(‘run’);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="需要留意的问题、"><a href="#需要留意的问题、" class="headerlink" title="需要留意的问题、"></a>需要留意的问题、</h4><p>.创建纹理并发送数据的过程很慢<br>但GPU处理3D动画很快<br>2.Mobile Safari默认创建1个纹理大小不超过1024x1024<br>3.创建的纹理⽣命周期仅在动画过程中存在，动画结束即刻销毁<br>4.创建或销毁纹理过程中，可能会出现闪屏（BUG）</p>
+<p>解决方案</p>
+<p>在动画元素上设置max-width:1024px，限制纹理绘制范围<br>• 避免大批量同时应用<br>• 解决闪屏：<br>-webkit-backface-visibility:hidden;<br>-webkit-transform-style:preserve-3d; </p>
+<p>JavaScript中的内存控制</p>
+<p>闭导致循环引用<br>•闭包导致过长的调用链<br>• 使用事件代理<br>• 低效的Dom选择器<br>• 减少Dom遍历范围和次数<br>• 事件节流</p>
+<h4 id="关于电量"><a href="#关于电量" class="headerlink" title="关于电量"></a>关于电量</h4><p>JPEG最省电（JPEG &gt; PNG &gt; GIF）<br>• 图片数量越多，尺寸越大，越耗电<br>• Ajax等动态JS增加电量消耗<br>• 加载不必要的资源导致电量浪费（JS库）<br>• Reflow和repaint耗电<br>• WebGL（Translate3D）耗电<br>• 内存占用越大越耗电<br>• 性能越差，电量消耗越快</p>
+<h4 id="性能原则！"><a href="#性能原则！" class="headerlink" title="性能原则！"></a>性能原则！</h4><p>处理性能优化的核⼼是CPU和内存<br>• 尽量去减少Reflow和repaint吧<br>• 合理使用GPU加速动画渲染<br>• 不要过分信任和滥⽤CSS3<br>• 更高效的JavaScript小技巧<br>• 性能越好，耗电越少<br>• 你有更好更聪明的方案<br>• 影响和驱动设计<br>• 遵循前人的经验，站在巨人的肩上<br>• 记住，移动浏览器在现阶段仍然是个屌丝</p>
+<h4 id="移动开发工具箱"><a href="#移动开发工具箱" class="headerlink" title="移动开发工具箱"></a>移动开发工具箱</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Chrome Developer Tools</span><br><span class="line">Mobile Perf bookmarklet</span><br><span class="line">• Firebug Lite / Page Resources / DOM Monster / SpriteMe / CSSess / </span><br><span class="line">Zoompf</span><br><span class="line">Yslow Mobile</span><br><span class="line">PageSpeed Insights </span><br><span class="line">ICY</span><br><span class="line">iWebInspector</span><br><span class="line">Android Webkit Console (Android 2.2+) </span><br><span class="line">Remote Debugging <span class="keyword">for</span> Mobile Safari</span><br><span class="line">Weinre</span><br><span class="line">Adobe Shadow</span><br><span class="line">JSPerf</span><br><span class="line">SunSpider</span><br><span class="line">Mobile Browser Concurrency Test</span><br></pre></td></tr></table></figure>
+<p>另辟蹊径<br>从策略的角度，另一些解决方案</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web移动端/" rel="tag"># web移动端</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/08/svn-与git的主要区别/" rel="next" title="svn 与git的主要区别">
+                <i class="fa fa-chevron-left"></i> svn 与git的主要区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/01/浏览器对象/" rel="prev" title="现代浏览器相关问题">
+                现代浏览器相关问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="hock" />
+            
+              <p class="site-author-name" itemprop="name">hock</p>
+              <p class="site-description motion-element" itemprop="description">恰同学少年，风华正茂</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#ViewPort-c参数最佳组合"><span class="nav-number">1.</span> <span class="nav-text">ViewPort c参数最佳组合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MediaQuery书写思路"><span class="nav-number">2.</span> <span class="nav-text">MediaQuery书写思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应式图片"><span class="nav-number">3.</span> <span class="nav-text">响应式图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器端实现的“响应式”"><span class="nav-number">4.</span> <span class="nav-text">服务器端实现的“响应式”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空间位移事件"><span class="nav-number">5.</span> <span class="nav-text">空间位移事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML5-和-Native-App-如何对接"><span class="nav-number">6.</span> <span class="nav-text">HTML5 和 Native App 如何对接?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web-App-的性能优化"><span class="nav-number">7.</span> <span class="nav-text">Web App 的性能优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#减少Reflow-amp-Repaint"><span class="nav-number">8.</span> <span class="nav-text">减少Reflow &amp; Repaint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS3-动画性能"><span class="nav-number">9.</span> <span class="nav-text">CSS3 动画性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#需要留意的问题、"><span class="nav-number">10.</span> <span class="nav-text">需要留意的问题、</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于电量"><span class="nav-number">11.</span> <span class="nav-text">关于电量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能原则！"><span class="nav-number">12.</span> <span class="nav-text">性能原则！</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移动开发工具箱"><span class="nav-number">13.</span> <span class="nav-text">移动开发工具箱</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hock</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
