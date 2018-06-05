@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="JavaScript中三种定义变量的方式const,var,let区别今天第一次遇到const定义的变量，查阅了相关资料整理了这篇文章。主要内容是：js中三种定义变量的方式const， var， let的区别。">
+<meta name="description" content="刚开始用vue或者react，很多时候我们都会把ES6这个大兄弟加入我们的技术栈中。但是ES6那么多那么多特性，我们真的需要全部都掌握吗？秉着二八原则，掌握好常用的、有用的这个可以让我们的开发快速起飞。">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript中const,var,let区别">
-<meta property="og:url" content="http://yoursite.com/2017/10/08/css/index.html">
+<meta property="og:title" content="ES6 规范及新特性">
+<meta property="og:url" content="http://yoursite.com/2017/10/08/ES6 规范及新特性/index.html">
 <meta property="og:site_name" content="artist code">
-<meta property="og:description" content="JavaScript中三种定义变量的方式const,var,let区别今天第一次遇到const定义的变量，查阅了相关资料整理了这篇文章。主要内容是：js中三种定义变量的方式const， var， let的区别。">
+<meta property="og:description" content="刚开始用vue或者react，很多时候我们都会把ES6这个大兄弟加入我们的技术栈中。但是ES6那么多那么多特性，我们真的需要全部都掌握吗？秉着二八原则，掌握好常用的、有用的这个可以让我们的开发快速起飞。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-29T01:02:06.443Z">
+<meta property="og:updated_time" content="2018-06-05T08:48:20.126Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript中const,var,let区别">
-<meta name="twitter:description" content="JavaScript中三种定义变量的方式const,var,let区别今天第一次遇到const定义的变量，查阅了相关资料整理了这篇文章。主要内容是：js中三种定义变量的方式const， var， let的区别。">
+<meta name="twitter:title" content="ES6 规范及新特性">
+<meta name="twitter:description" content="刚开始用vue或者react，很多时候我们都会把ES6这个大兄弟加入我们的技术栈中。但是ES6那么多那么多特性，我们真的需要全部都掌握吗？秉着二八原则，掌握好常用的、有用的这个可以让我们的开发快速起飞。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/08/css/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/08/ES6 规范及新特性/"/>
 
 
 
 
 
-  <title>JavaScript中const,var,let区别 | artist code</title>
+  <title>ES6 规范及新特性 | artist code</title>
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/08/css/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/08/ES6 规范及新特性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hock">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript中const,var,let区别</h1>
+          <h1 class="post-title" itemprop="name headline">ES6 规范及新特性</h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
+                  <a href="/categories/ES6/" itemprop="url" rel="index">
+                    <span itemprop="name">ES6</span>
                   </a>
                 </span>
 
@@ -362,7 +362,11 @@
       
 
       
-        <h5 id="JavaScript中三种定义变量的方式const-var-let区别"><a href="#JavaScript中三种定义变量的方式const-var-let区别" class="headerlink" title="JavaScript中三种定义变量的方式const,var,let区别"></a>JavaScript中三种定义变量的方式const,var,let区别</h5><p>今天第一次遇到const定义的变量，查阅了相关资料整理了这篇文章。主要内容是：js中三种定义变量的方式const， var， let的区别。<br><a id="more"></a></p>
+        <blockquote>
+<p>刚开始用vue或者react，很多时候我们都会把ES6这个大兄弟加入我们的技术栈中。但是ES6那么多那么多特性，我们真的需要全部都掌握吗？秉着二八原则，掌握好常用的、有用的这个可以让我们的开发快速起飞。</p>
+</blockquote>
+<hr>
+<a id="more"></a>
 <h4 id="const"><a href="#const" class="headerlink" title="const"></a>const</h4><p>const 定义的变量不可以修改，而且必须初始化<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const b = 2; //正确</span><br><span class="line">// const b;  //错误，必须初始化</span><br><span class="line">console.log(<span class="string">'函数外const定义 b:'</span> +b); //有输出值</span><br><span class="line">// b =5;</span><br><span class="line">// console.log(<span class="string">'函数外修改const定义b:'</span> + b); //无法输出</span><br></pre></td></tr></table></figure></p>
 <h4 id="var"><a href="#var" class="headerlink" title="var"></a>var</h4><p>var 定义的变量可以修改，如果不初始化输出underfined，不会报错。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a = 1;</span><br><span class="line">console.log(<span class="string">'函数外var定义a:'</span> + a); //可以输出a=1</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">change</span></span>()&#123;</span><br><span class="line">a = 4;</span><br><span class="line">console.log(<span class="string">'函数内var定义a:'</span> + a); //可以输出a=4</span><br><span class="line">&#125;</span><br><span class="line">change();</span><br><span class="line">console.log(<span class="string">'函数调用后var定义a为函数内部修改值:'</span> + a); //可以输出a=4</span><br></pre></td></tr></table></figure></p>
 <h4 id="let"><a href="#let" class="headerlink" title="let"></a>let</h4><p>let是块级作用域，函数内部使用let定义后，对函数外部无影响。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> c = 3;</span><br><span class="line">console.log(<span class="string">'函数外let定义c:'</span> + c); //可以输出c=3</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">change</span></span>()&#123;</span><br><span class="line"><span class="built_in">let</span> c = 6;</span><br><span class="line">console.log(<span class="string">'函数内let定义c'</span> + c);  //可以输出c=6</span><br><span class="line">&#125;</span><br><span class="line">change();</span><br><span class="line">console.log(<span class="string">'函数调用后let定义c不受函数内部定义影响:'</span> + c);  //可以输出c=3</span><br></pre></td></tr></table></figure></p>
@@ -396,8 +400,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/08/JavaScript中const-var-let区别/" rel="next" title="JavaScript中const,var,let区别">
-                <i class="fa fa-chevron-left"></i> JavaScript中const,var,let区别
+              <a href="/2017/10/08/DOM 对象/" rel="next" title="DOM 对象">
+                <i class="fa fa-chevron-left"></i> DOM 对象
               </a>
             
           </div>
@@ -406,8 +410,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/08/php中json-decode-和json-encode-的使用方法/" rel="prev" title="php中json_decode()和json_encode()的使用方法">
-                php中json_decode()和json_encode()的使用方法 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/08/Json 编码规范/" rel="prev" title="Json 编码规范">
+                Json 编码规范 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -489,7 +493,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -500,7 +504,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -511,7 +515,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -544,7 +548,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#JavaScript中三种定义变量的方式const-var-let区别"><span class="nav-number">1.</span> <span class="nav-text">JavaScript中三种定义变量的方式const,var,let区别</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#const"><span class="nav-number"></span> <span class="nav-text">const</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#var"><span class="nav-number"></span> <span class="nav-text">var</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#let"><span class="nav-number"></span> <span class="nav-text">let</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#const"><span class="nav-number">1.</span> <span class="nav-text">const</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#var"><span class="nav-number">2.</span> <span class="nav-text">var</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#let"><span class="nav-number">3.</span> <span class="nav-text">let</span></a></li></ol></div>
             
 
           </div>

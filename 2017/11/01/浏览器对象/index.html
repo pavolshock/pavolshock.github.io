@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="浏览器对象是指：除去工具栏，导航栏，菜单栏，边框等占位元素后的，用于显示网页的净宽高。window对象充当全局作用域，而且表示浏览器窗口。window对象有innerwidth和innerheight 属性，可以回去浏览器窗口内部的宽高。">
+<meta name="description" content="浏览器对象是指：除去工具栏，导航栏，菜单栏，边框等占位元素后的，用于显示网页的净宽高。">
 <meta name="keywords" content="web移动端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="现代浏览器相关问题">
+<meta property="og:title" content="浏览器对象">
 <meta property="og:url" content="http://yoursite.com/2017/11/01/浏览器对象/index.html">
 <meta property="og:site_name" content="artist code">
-<meta property="og:description" content="浏览器对象是指：除去工具栏，导航栏，菜单栏，边框等占位元素后的，用于显示网页的净宽高。window对象充当全局作用域，而且表示浏览器窗口。window对象有innerwidth和innerheight 属性，可以回去浏览器窗口内部的宽高。">
+<meta property="og:description" content="浏览器对象是指：除去工具栏，导航栏，菜单栏，边框等占位元素后的，用于显示网页的净宽高。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-29T01:02:06.448Z">
+<meta property="og:updated_time" content="2018-06-05T08:49:11.068Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="现代浏览器相关问题">
-<meta name="twitter:description" content="浏览器对象是指：除去工具栏，导航栏，菜单栏，边框等占位元素后的，用于显示网页的净宽高。window对象充当全局作用域，而且表示浏览器窗口。window对象有innerwidth和innerheight 属性，可以回去浏览器窗口内部的宽高。">
+<meta name="twitter:title" content="浏览器对象">
+<meta name="twitter:description" content="浏览器对象是指：除去工具栏，导航栏，菜单栏，边框等占位元素后的，用于显示网页的净宽高。">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>现代浏览器相关问题 | artist code</title>
+  <title>浏览器对象 | artist code</title>
   
 
 
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">现代浏览器相关问题</h1>
+          <h1 class="post-title" itemprop="name headline">浏览器对象</h1>
         
 
         <div class="post-meta">
@@ -362,7 +362,12 @@
       
 
       
-        <h4 id="浏览器对象是指：除去工具栏，导航栏，菜单栏，边框等占位元素后的，用于显示网页的净宽高。"><a href="#浏览器对象是指：除去工具栏，导航栏，菜单栏，边框等占位元素后的，用于显示网页的净宽高。" class="headerlink" title="浏览器对象是指：除去工具栏，导航栏，菜单栏，边框等占位元素后的，用于显示网页的净宽高。"></a>浏览器对象是指：除去工具栏，导航栏，菜单栏，边框等占位元素后的，用于显示网页的净宽高。</h4><p>window对象充当全局作用域，而且表示浏览器窗口。<br>window对象有innerwidth和innerheight 属性，可以回去浏览器窗口内部的宽高。<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">‘use strict’;</span><br><span class="line">alert(<span class="string">'屏幕的尺寸为:’+window.innerwidth+’x’+window.innerheight);</span></span><br></pre></td></tr></table></figure></p>
+        <blockquote>
+<p>浏览器对象是指：除去工具栏，导航栏，菜单栏，边框等占位元素后的，用于显示网页的净宽高。</p>
+</blockquote>
+<hr>
+<a id="more"></a>
+<p>window对象充当全局作用域，而且表示浏览器窗口。<br>window对象有innerwidth和innerheight 属性，可以回去浏览器窗口内部的宽高。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">‘use strict’;</span><br><span class="line">alert(<span class="string">'屏幕的尺寸为:’+window.innerwidth+’x’+window.innerheight);</span></span><br></pre></td></tr></table></figure></p>
 <h4 id="navigator对象表示浏览器的信息，最常用的属性包括："><a href="#navigator对象表示浏览器的信息，最常用的属性包括：" class="headerlink" title="navigator对象表示浏览器的信息，最常用的属性包括："></a>navigator对象表示浏览器的信息，最常用的属性包括：</h4><p>. navigator.appName:浏览器名称；<br>. navigator.appVersion:浏览器版本；<br>. navigator.;language：浏览器设置语言；<br>. navigator.platform:操作系统类型；<br>. navigator.userAgent: 浏览器设定的user － agent 字符串。</p>
 <p>navigator 的信息可以很容易滴被用户修改，所以javascript读取的值不一定是正确的，不要用navigator去判断浏览器版本正确的方法是充分利用javascript对不存在属性返回undefinded的属性，直接用短路运算｜｜计算：<br>var width = window.innerWidth || document.body.clientWidth;</p>
 <p>screen 对象表示屏幕的信息，常用的属性有：<br>. screen.width:屏幕宽度，一像素为单位；<br>. screen.height: 屏幕高度，以像素位单位；<br>. screen.colorDepth: 返回颜色位数，如8、16、24.</p>
@@ -375,7 +380,7 @@
 <h4 id="document-对象还有一个cookie属性，可以获取当前野-main的cookie"><a href="#document-对象还有一个cookie属性，可以获取当前野-main的cookie" class="headerlink" title="document 对象还有一个cookie属性，可以获取当前野 main的cookie"></a>document 对象还有一个cookie属性，可以获取当前野 main的cookie</h4><p>cookie 是由服务器发送的key－value标识符。因为http是无状态协议，但是服务器窑区分到底是哪个用户发送过来的请求，就可以用cookie来区分，当一个用户成功登陆后，服务器发送一个cookie给浏览器，</p>
 <p>javascript 可以通过document.cookie读区到当前页面的cookie；<br>document.cookie:可以读取当前页面的cookie信息，第三方引入也是可以的<br>所以说是非常危险的，有可能第三方恶意代码，为乐解决这个问题，服务器在设置cookie时可以使用httponly，设定了httponly的cookie将不能被javascript读取，这个行为由浏览器实现，主流浏览器均支持，<br>为了确保安全，服务器端在设置cookie时，应该始终坚持使用httponly。<br>history对象 保存了浏览器的历史纪录，javascript可以调用history对象和back（）<br>或者forward（），相当于第几了浏览器的前进与后退</p>
 <p>这个对象历史遗留对象，由于ajax和页面交互，简单粗暴的调用hitstory。bakc（）可能让用户感觉非常封路</p>
-<h4 id="浏览器对象有：-windows对象-，location对象，screen对象，document对象，navigator对象。"><a href="#浏览器对象有：-windows对象-，location对象，screen对象，document对象，navigator对象。" class="headerlink" title="浏览器对象有： windows对象 ，location对象，screen对象，document对象，navigator对象。"></a>浏览器对象有： windows对象 ，location对象，screen对象，document对象，navigator对象。</h4><p>小知识点：<br>vmware tools 安装 cd/dvd 浏览 darwin.ios 文件下载地址<br> <a href="https://pan.baidu.com/s/1qW6wiMo" target="_blank" rel="noopener">https://pan.baidu.com/s/1qW6wiMo</a></p>
+<h4 id="浏览器对象有：-windows对象-，location对象，screen对象，document对象，navigator对象。"><a href="#浏览器对象有：-windows对象-，location对象，screen对象，document对象，navigator对象。" class="headerlink" title="浏览器对象有： windows对象 ，location对象，screen对象，document对象，navigator对象。"></a>浏览器对象有： windows对象 ，location对象，screen对象，document对象，navigator对象。</h4><hr>
 
       
     </div>
@@ -406,8 +411,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/10/移动端开发最佳实践/" rel="next" title="移动端开发最佳实践优化等问题">
-                <i class="fa fa-chevron-left"></i> 移动端开发最佳实践优化等问题
+              <a href="/2017/10/10/移动端开发最佳实践/" rel="next" title="移动端开发最佳实践优化">
+                <i class="fa fa-chevron-left"></i> 移动端开发最佳实践优化
               </a>
             
           </div>
@@ -499,7 +504,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -510,7 +515,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -521,7 +526,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -554,7 +559,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器对象是指：除去工具栏，导航栏，菜单栏，边框等占位元素后的，用于显示网页的净宽高。"><span class="nav-number">1.</span> <span class="nav-text">浏览器对象是指：除去工具栏，导航栏，菜单栏，边框等占位元素后的，用于显示网页的净宽高。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#navigator对象表示浏览器的信息，最常用的属性包括："><span class="nav-number">2.</span> <span class="nav-text">navigator对象表示浏览器的信息，最常用的属性包括：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#document-对象还有一个cookie属性，可以获取当前野-main的cookie"><span class="nav-number">3.</span> <span class="nav-text">document 对象还有一个cookie属性，可以获取当前野 main的cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器对象有：-windows对象-，location对象，screen对象，document对象，navigator对象。"><span class="nav-number">4.</span> <span class="nav-text">浏览器对象有： windows对象 ，location对象，screen对象，document对象，navigator对象。</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#navigator对象表示浏览器的信息，最常用的属性包括："><span class="nav-number">1.</span> <span class="nav-text">navigator对象表示浏览器的信息，最常用的属性包括：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#document-对象还有一个cookie属性，可以获取当前野-main的cookie"><span class="nav-number">2.</span> <span class="nav-text">document 对象还有一个cookie属性，可以获取当前野 main的cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器对象有：-windows对象-，location对象，screen对象，document对象，navigator对象。"><span class="nav-number">3.</span> <span class="nav-text">浏览器对象有： windows对象 ，location对象，screen对象，document对象，navigator对象。</span></a></li></ol></div>
             
 
           </div>
