@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="博客，文章," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Vue 实现了一套内容分发的 API，这套 API 基于当前的 Web Components 规范草案，将  元素作为承载分发内容的出口。">
+<meta name="keywords" content="博客，文章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一篇看懂 vue.js 内容分发">
+<meta property="og:url" content="http://yoursite.com/2018/01/12/一篇看懂插槽/index.html">
+<meta property="og:site_name" content="artist code">
+<meta property="og:description" content="Vue 实现了一套内容分发的 API，这套 API 基于当前的 Web Components 规范草案，将  元素作为承载分发内容的出口。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-05T08:04:52.795Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一篇看懂 vue.js 内容分发">
+<meta name="twitter:description" content="Vue 实现了一套内容分发的 API，这套 API 基于当前的 Web Components 规范草案，将  元素作为承载分发内容的出口。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/12/一篇看懂插槽/"/>
+
+
+
+
+
+  <title>一篇看懂 vue.js 内容分发 | artist code</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">artist code</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/12/一篇看懂插槽/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hock">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="artist code">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一篇看懂 vue.js 内容分发</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-12T22:56:29+08:00">
+                2018-01-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Vue 实现了一套内容分发的 API，这套 API 基于当前的 Web Components 规范草案，将 <slot> 元素作为承载分发内容的出口。<br><a id="more"></a></slot></p>
+</blockquote>
+<h4 id="定义解析"><a href="#定义解析" class="headerlink" title="定义解析"></a>定义解析</h4><p>Vue.js 内容分发把组件上下文的内容注入到组件。<br>假设有一个组件名：<my-component> 其使用上下文如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;my-component&gt;</span><br><span class="line">  &lt;p&gt;hi,slots&lt;/p&gt;</span><br><span class="line">&lt;/my-component&gt;</span><br></pre></td></tr></table></figure></my-component></p>
+<p>再假设组件模板为如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>那么注入后组件 HTML 相当于：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;p&gt;hi,slots&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>上面例子：帮助我们理解难懂的定义。<br>标签 <slot> 会把组件使用上下文的内容注入到此标签所占据的位置上。组件分发的概念简单而强大，因为它意味着对一个隔离的组件除了通过属性、事件交互之外，还可以注入内容。<br>执行代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">""</span> id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;my-component&gt;</span><br><span class="line">    &lt;p&gt;hi,slots&lt;/p&gt;</span><br><span class="line">  &lt;/my-component&gt;  </span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">   Vue.component(<span class="string">'my-component'</span>, &#123;</span><br><span class="line">      template: `</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">    `</span><br><span class="line">    &#125;);</span><br><span class="line">    new Vue(&#123;</span><br><span class="line">      el: <span class="string">"#app"</span></span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></slot></p>
+<p>一个组件如果需要外部传入数据如数字、字符串等等的时候，可以使用prop，如果需要传入js表达式或者对象时，可以使用事件，如果希望传入的是HTML标签，那么使用内容分发就再好不过了。所以，尽管内容分发这个概念看起来极为复杂，而实际上可以简化了解为把HTML标签传入组件的一种方法。所以归根结底，内容分发是一种为组件传递参数的方法。</p>
+<h4 id="命名插槽"><a href="#命名插槽" class="headerlink" title="命名插槽"></a>命名插槽</h4><p>刚刚的案例通过slot标签，一股脑的把组件上下文的内容全部注入到组件内的规定位置。vue.js也提供了命名插槽（named slot）的技术，可以把上下文内的内容分成多个有名字的部分，然后插入到组件的不同位置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">""</span> id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;sticky&gt;</span><br><span class="line">    &lt;div slot=<span class="string">"title"</span>&gt;</span><br><span class="line">    &lt;h3&gt;Title&lt;/h3&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div slot=<span class="string">"body"</span>&gt;&lt;p&gt;</span><br><span class="line">      Body foo bar baz  ddd</span><br><span class="line">    &lt;/p&gt;&lt;/div&gt;</span><br><span class="line">  &lt;/sticky&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  Vue.component(<span class="string">'sticky'</span>, &#123;</span><br><span class="line">    template: `</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div class=<span class="string">"wrapper"</span>&gt;  </span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;div class=<span class="string">"title"</span>&gt;</span><br><span class="line">            &lt;slot name=<span class="string">"title"</span>&gt;&lt;/slot&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=<span class="string">"body"</span>&gt;</span><br><span class="line">            &lt;slot name=<span class="string">"body"</span>&gt;&lt;/slot&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;`</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">    el: <span class="string">"#app"</span></span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>此案例使用了两个插槽分别为slot1，slot2，并且把它们放到组件的不同位置。</p>
+<h4 id="综合案例"><a href="#综合案例" class="headerlink" title="综合案例"></a>综合案例</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">""</span> id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;sticky&gt;</span><br><span class="line">    &lt;div slot=<span class="string">"title"</span>&gt;</span><br><span class="line">    &lt;h3&gt;Title&lt;/h3&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div slot=<span class="string">"body"</span>&gt;&lt;p&gt;</span><br><span class="line">      Body foo bar baz  ddd</span><br><span class="line">    &lt;/p&gt;&lt;/div&gt;</span><br><span class="line">  &lt;/sticky&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  Vue.component(<span class="string">'sticky'</span>, &#123;</span><br><span class="line">    template: `</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;div class=<span class="string">"wrapper"</span>&gt;  </span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;div class=<span class="string">"title"</span>&gt;</span><br><span class="line">            &lt;slot name=<span class="string">"title"</span>&gt;&lt;/slot&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=<span class="string">"body"</span>&gt;</span><br><span class="line">            &lt;slot name=<span class="string">"body"</span>&gt;&lt;/slot&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;`</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">    el: <span class="string">"#app"</span></span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>本案例内，使用上下文通过属性slot创建了两个插槽，分别为title和body，在组件的模板内（template成员）通过<slot>标签的name属性引用title和body，并把它注入且放入到合适的位置上。</slot></p>
+<hr>
+<p>More info: <a href="https://segmentfault.com/a/1190000007591093" target="_blank" rel="noopener">Generating</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/博客，文章/" rel="tag"># 博客，文章</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/01/浏览器对象/" rel="next" title="现代浏览器相关问题">
+                <i class="fa fa-chevron-left"></i> 现代浏览器相关问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/22/随笔--技术篇/" rel="prev" title="my new post">
+                my new post <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="hock" />
+            
+              <p class="site-author-name" itemprop="name">hock</p>
+              <p class="site-description motion-element" itemprop="description">恰同学少年，风华正茂</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义解析"><span class="nav-number">1.</span> <span class="nav-text">定义解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命名插槽"><span class="nav-number">2.</span> <span class="nav-text">命名插槽</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#综合案例"><span class="nav-number">3.</span> <span class="nav-text">综合案例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hock</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
