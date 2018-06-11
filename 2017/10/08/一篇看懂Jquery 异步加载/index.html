@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="artist code">
 <meta property="og:description" content="jQuery get() 和 post() 方法用于通过 HTTP GET 或 POST 请求从服务器请求数据">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-05T08:48:57.078Z">
+<meta property="og:updated_time" content="2018-06-06T06:37:35.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一篇看懂Jquery 异步加载">
 <meta name="twitter:description" content="jQuery get() 和 post() 方法用于通过 HTTP GET 或 POST 请求从服务器请求数据">
@@ -368,15 +368,13 @@
 <hr>
 <a id="more"></a>
 <p>GET - 从指定的资源请求数据<br>POST - 向指定的资源提交要处理的数据<br>GET 基本上用于从服务器获得（取回）数据。注释：GET 方法可能返回缓存数据。<br>POST 也可用于从服务器获取数据。POST 方法不会缓存数据，并且常用于连同请求一起发送数据。</p>
-<h4 id="GET-amp-amp-POST-区别"><a href="#GET-amp-amp-POST-区别" class="headerlink" title="GET &amp;&amp; POST 区别"></a>GET &amp;&amp; POST 区别</h4><blockquote>
-<ol>
+<h4 id="GET-amp-amp-POST-区别"><a href="#GET-amp-amp-POST-区别" class="headerlink" title="GET &amp;&amp; POST 区别"></a>GET &amp;&amp; POST 区别</h4><ol>
 <li>get是从服务器上获取数据，post是向服务器传送数据。</li>
 <li>get是把参数数据队列加到提交表单的ACTION属性所指的URL中，值和表单内各个字段一一对应，在URL中可以看到。post是通过HTTP post机制，将表单内各个字段与其内容放置在HTML HEADER内一起传送到ACTION属性所指的URL地址。用户看不到这个过程。</li>
 <li>对于get方式，服务器端用Request.QueryString获取变量的值，对于post方式，服务器端用Request.Form获取提交的数据。</li>
 <li>get传送的数据量较小，不能大于2KB。post传送的数据量较大，一般被默认为不受限制。但理论上，IIS4中最大量为80KB，IIS5中为100KB。</li>
 <li>get安全性非常低，post安全性较高。但是执行效率却比Post方法好。<br>建议：<br>1、get方式的安全性较Post方式要差些，包含机密信息的话，建议用Post数据提交方式；<br>2、在做数据查询时，建议用Get方式；而在做数据添加搜索、修改或删除时，建议用Post方式;</li>
 </ol>
-</blockquote>
 <h4 id="使用get方式-get"><a href="#使用get方式-get" class="headerlink" title="使用get方式:$.get()"></a>使用get方式:$.get()</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"button"</span>).click(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">　　$.get(<span class="string">"url"</span>,<span class="keyword">function</span>(data,status)&#123;</span><br><span class="line">　　　　alert(<span class="string">"Data: "</span> + data + <span class="string">"nStatus: "</span> + status);</span><br><span class="line">　　&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h4 id="使用post方式-post"><a href="#使用post方式-post" class="headerlink" title="使用post方式:$.post()"></a>使用post方式:$.post()</h4> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">$(<span class="string">"#send"</span>).click(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">  var cont = &#123;username:$(<span class="string">"input"</span>)[0].value,age:$(<span class="string">"input"</span>)[1].value,job:$(<span class="string">"input"</span>)[2].value&#125;;</span><br><span class="line">  var url = <span class="string">'ab.php'</span>;</span><br><span class="line">  $.post(url,cont,<span class="keyword">function</span>(data)&#123;</span><br><span class="line">   var res = <span class="built_in">eval</span>(<span class="string">"("</span> + data + <span class="string">")"</span>);//转为Object对象</span><br><span class="line">  var str = res.username + res.age + res.job;</span><br><span class="line"> $(<span class="string">"#result"</span>).html(str);</span><br><span class="line"> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h4 id="ajax-请求与上面两个相比，这个可以执行精确的需求控制。"><a href="#ajax-请求与上面两个相比，这个可以执行精确的需求控制。" class="headerlink" title="$.ajax()请求与上面两个相比，这个可以执行精确的需求控制。"></a>$.ajax()请求与上面两个相比，这个可以执行精确的需求控制。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">  $(<span class="string">"#send"</span>).click(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">   var cont = $(<span class="string">"input"</span>).serialize();</span><br><span class="line">   $.ajax(&#123;</span><br><span class="line">     url:<span class="string">'php/bird.php'</span>,</span><br><span class="line">     <span class="built_in">type</span>:<span class="string">'post'</span>,</span><br><span class="line">     dataType:<span class="string">'json'</span>,</span><br><span class="line">     data:cont,</span><br><span class="line">     success:<span class="keyword">function</span>(data)&#123;</span><br><span class="line">      var str = data.username + data.age + data.job;</span><br><span class="line">      $(<span class="string">"#result"</span>).html(str);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -504,7 +502,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
