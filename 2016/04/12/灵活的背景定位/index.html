@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Javascript 数组对象," />
+  <meta name="keywords" content="css," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Map和Set是ES6标准新增的数据类型，请根据浏览器的支持情况决定是否要使用。">
-<meta name="keywords" content="Javascript 数组对象">
+<meta name="description" content="根据技术实现定位，往往不会产生在审美上让人舒服的视觉效果，必须用偏移量来完成。">
+<meta name="keywords" content="css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Map和Set--ES6标准新增的数据类型">
-<meta property="og:url" content="http://yoursite.com/2017/10/06/Map和Set-ES6标准新增的数据类型/index.html">
+<meta property="og:title" content="灵活的背景定位">
+<meta property="og:url" content="http://yoursite.com/2016/04/12/灵活的背景定位/index.html">
 <meta property="og:site_name" content="artist code">
-<meta property="og:description" content="Map和Set是ES6标准新增的数据类型，请根据浏览器的支持情况决定是否要使用。">
+<meta property="og:description" content="根据技术实现定位，往往不会产生在审美上让人舒服的视觉效果，必须用偏移量来完成。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-29T01:02:06.445Z">
+<meta property="og:updated_time" content="2018-06-14T01:09:07.404Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Map和Set--ES6标准新增的数据类型">
-<meta name="twitter:description" content="Map和Set是ES6标准新增的数据类型，请根据浏览器的支持情况决定是否要使用。">
+<meta name="twitter:title" content="灵活的背景定位">
+<meta name="twitter:description" content="根据技术实现定位，往往不会产生在审美上让人舒服的视觉效果，必须用偏移量来完成。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/06/Map和Set-ES6标准新增的数据类型/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/04/12/灵活的背景定位/"/>
 
 
 
 
 
-  <title>Map和Set--ES6标准新增的数据类型 | artist code</title>
+  <title>灵活的背景定位 | artist code</title>
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/06/Map和Set-ES6标准新增的数据类型/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/12/灵活的背景定位/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hock">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Map和Set--ES6标准新增的数据类型</h1>
+          <h1 class="post-title" itemprop="name headline">灵活的背景定位</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-06T14:20:20+08:00">
-                2017-10-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-12T02:34:24+08:00">
+                2016-04-12
               </time>
             
 
@@ -363,21 +363,20 @@
 
       
         <blockquote>
-<p>Map和Set是ES6标准新增的数据类型，请根据浏览器的支持情况决定是否要使用。</p>
+<p>根据技术实现定位，往往不会产生在审美上让人舒服的视觉效果，必须用偏移量来完成。</p>
 </blockquote>
 <hr>
 <a id="more"></a>
-<p>JavaScript的默认对象表示方式是对象 {}<br>对象有个小问题，就是键必须是字符串，但实际Number或者其他类型作为键也没毛病啊<br>为了解决这个问题，ES6引入了新的数据类型Map。<br>测试你的浏览器是否支持ES6规范，不支持报ReferenceError错误，不行就换<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'use strict'</span>;</span><br><span class="line"> var m = new Map();</span><br><span class="line"> var s = new Set();</span><br><span class="line"> alert(<span class="string">'你的浏览器支持Map和Set！'</span>);</span><br></pre></td></tr></table></figure></p>
-<p> Map<br> 键值对，查询速度快<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var names = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>];</span><br><span class="line">var scores = [78,67,99];</span><br></pre></td></tr></table></figure></p>
-<p> 一般方法先从names 找到对应位置，在从 scores取成绩，Array越长，耗时越长。<br> Map实现，只需 ‘名字-成绩’的对照表，表有多大都不会慢。<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var m = new Map([<span class="string">'a'</span>,78],[<span class="string">'b'</span>,67],[<span class="string">'c'</span>,99]);</span><br><span class="line">m.get(<span class="string">'a'</span>); // 78</span><br></pre></td></tr></table></figure></p>
-<p> 初始化Map需要 一个二维数据 || 初始化个空Map就ok<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var m = new Map(); //空Map</span><br><span class="line">m.set(<span class="string">'a'</span>,67);     //添加新的key-value</span><br><span class="line">m.has(<span class="string">'a'</span>);        //是否存在key ‘a’ : <span class="literal">true</span></span><br><span class="line">m.get(<span class="string">'a'</span>);        //67</span><br><span class="line">m.delete(<span class="string">'a'</span>);     //删除 key ‘a’</span><br><span class="line">m.get(<span class="string">'a'</span>);        //undefined</span><br></pre></td></tr></table></figure></p>
-<p> key只能对应一个value，故多次对一个key放入value，后把前覆盖掉。</p>
-<p> Set<br> Set跟Map类似，也是一组key的集合，但不存储value. 由于key不能重复，故没重复的key。<br> 创建Set，只需一个空数组 ||　创建一个空Set<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s1 = new Set(); //空Set</span><br><span class="line">var s2 = new Set([1,2,3]); //含1,2,3</span><br></pre></td></tr></table></figure></p>
-<p> 重复元素在Set中自动过滤：<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s = new Set([1,2,3,3,<span class="string">'3'</span>]);</span><br><span class="line">s; // Set &#123;1,2,3,<span class="string">'3'</span>&#125; 注意数字 3 字符串 ‘3’ 是不同的元素</span><br></pre></td></tr></table></figure></p>
-<p> 添加元素到Set中，可以重复添加，但不会有效果：<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">add(key);</span><br><span class="line">s.add(4);</span><br><span class="line">s       //&#123;1,2,3,4&#125;</span><br></pre></td></tr></table></figure></p>
-<p> 删除元素<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">delete(key);</span><br><span class="line">var s = new Set([1,2,3]);</span><br><span class="line">s; // Set &#123;1,2,3&#125;;</span><br><span class="line">s.delete(3);</span><br><span class="line">s; // Set &#123;1,2&#125;</span><br></pre></td></tr></table></figure></p>
-<p> More info: <a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014345007434430758e3ac6e1b44b1865178e7aff9082e000" target="_blank" rel="noopener">Generating</a></p>
-
+<h4 id="历史及难点"><a href="#历史及难点" class="headerlink" title="历史及难点"></a>历史及难点</h4><blockquote>
+<p>很多时候我们朝着某个角对齐，但是我们希望边角与容器之间有一定的间隙，来产生内边距的效果，对于具有固定尺寸的容器来说，使用css2.1做到这一点会很麻烦，css3用background-position 扩展方案很容易实现这一点.</p>
+</blockquote>
+<h4 id="background-position-的扩展语法方案"><a href="#background-position-的扩展语法方案" class="headerlink" title="background-position 的扩展语法方案"></a>background-position 的扩展语法方案</h4><p>在 css背景与边框(第三版) 该属性已经得到扩展，它语序背景图片的距离任意角的偏移量，只要我们在偏移量前面指定关键词<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">background: url(code.svg)</span><br><span class="line">            no-repeat <span class="comment">#556;</span></span><br><span class="line">background-position: right 20px bottom 10px;</span><br></pre></td></tr></table></figure></p>
+<p>最后一步，我们还需要提供一个合适的回退方案，在不支持该属性的情况下，而且不会干扰到文字的可读性 。提供了一个回退方案也很简单，就是老套的将定位值写入background属性中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">background: url(code.svg)</span><br><span class="line">            no-repeat bottom right <span class="comment">#556;</span></span><br><span class="line">background-position: right 20px bottom 10px;</span><br></pre></td></tr></table></figure></p>
+<h4 id="background-origin-方案"><a href="#background-origin-方案" class="headerlink" title="background-origin 方案"></a>background-origin 方案</h4><p>在给背景设置某个角的偏移量时，有一种情况极其常见：偏移量与容器的内边距一致，如果每次padding值有所改动，都会影响背景定位的位置，默认情况下background-position指定的是 padding box内边距的外沿，还好css3，给我们带来的一个 background-origin 属性来拯救世界，它可以改变这种行为，默认情况下，它的值是 padding-box 如果把它的值改为content-box，定位将以内容区的边缘作为基准(也就是说，此时背景图片距离边角的偏移量就跟内边距保持一致了)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">padding: 10px;</span><br><span class="line">background: url(code.jpg) no-repeat;</span><br><span class="line">background-origin: content-box;</span><br></pre></td></tr></table></figure></p>
+<p>经测试,这使我们的代码更加 DIY 再通过background-position的扩展语法来设置这些额外的偏移量，两者可以结合使用。</p>
+<p>兼容性： IE11及以上所有最新浏览器都支持</p>
+<h4 id="calc-方案"><a href="#calc-方案" class="headerlink" title="calc() 方案"></a>calc() 方案</h4><p>把背景图片定位到距离底边 10px 距离右边20px ，如果使用calc() 函数允许我们执行此类运算，它可以完美使用 background-position 属性的使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">background : url(code.jpg) no-repeat;</span><br><span class="line">background-position: calc(100% - 20px) calc(100% - 10px);</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -394,7 +393,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Javascript-数组对象/" rel="tag"># Javascript 数组对象</a>
+            <a href="/tags/css/" rel="tag"># css</a>
           
         </div>
       
@@ -407,18 +406,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/05/OOP编程--(PHP)/" rel="next" title="OOP编程--(PHP)">
-                <i class="fa fa-chevron-left"></i> OOP编程--(PHP)
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/08/DOM 对象/" rel="prev" title="DOM 对象">
-                DOM 对象 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/06/08/响应式布局解决方案--项目经验/" rel="prev" title="响应式布局解决方案--项目经验">
+                响应式布局解决方案--项目经验 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -471,8 +466,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -536,6 +540,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#历史及难点"><span class="nav-number">1.</span> <span class="nav-text">历史及难点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#background-position-的扩展语法方案"><span class="nav-number">2.</span> <span class="nav-text">background-position 的扩展语法方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#background-origin-方案"><span class="nav-number">3.</span> <span class="nav-text">background-origin 方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#calc-方案"><span class="nav-number">4.</span> <span class="nav-text">calc() 方案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
